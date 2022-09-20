@@ -1,10 +1,7 @@
 package learn;
 
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Complex {
 
@@ -135,31 +132,67 @@ public class Complex {
 
         boolean flag = true;
 
-        System.out.printf("Англо-украинский словарь \n1.Показать все\n" +
-                "2.Перевод англ. слова\n" +
-                "3.Перевод укр. слова\n" +
-                "4.Добавить слово\n" +
-                "0.Выход");
-        System.out.println();
 
-        Scanner kbScanner = new Scanner(System.in);
-        String digit = kbScanner.nextLine();
+        while(flag) {
+            System.out.printf("Англо-украинский словарь \n1.Показать все\n" +
+                    "2.Перевод англ. слова\n" +
+                    "3.Перевод укр. слова\n" +
+                    "4.Добавить слово\n" +
+                    "0.Выход");
+            System.out.println();
 
-        switch (digit)
-        {
-            case "1":
-                for(String key : map.keySet())
-                {
-                    System.out.printf("%s -- %s\n",key,map.get(key));
-                }
-                break;
-            case "2":
-                System.out.println("Введите слово на англ: ");
-                String str = kbScanner.nextLine();
-                String translate = map.get(str);
-                System.out.println(str + " - " + translate);
-                break;
-            default: break;
+            Scanner kbScanner = new Scanner(System.in);
+            String digit = kbScanner.nextLine();
+
+            switch (digit) {
+                case "1":
+                    for (String key : map.keySet()) {
+                        System.out.printf("%s -- %s\n", key, map.get(key));
+                    }
+                    break;
+                case "2":
+                    System.out.println("Введите слово на англ: ");
+                    String str = kbScanner.nextLine();
+                    String translate = map.get(str);
+                    System.out.println(str + " - " + translate);
+                    break;
+                case "3":
+                    System.out.println("Введите слово на укр: ");
+                    String str3 = kbScanner.nextLine();
+
+                    String[] arr_val = new String[]{};
+                    arr_val = map.values().toArray(new String[0]);
+                    String[] arr_key = new String[]{};
+                    arr_key = map.keySet().toArray(new String[0]);
+                    //System.out.println(arr_val[1]);
+                    //System.out.println(arr_key[1]);
+
+                    for(int i = 0; i < arr_val.length;i++)
+                    {
+                        if(arr_val[i].contentEquals(str3))
+                        {
+                            System.out.println(arr_val[i] + " --- "+ arr_key[i]);
+                        }
+                    }
+                    break;
+                case "4":
+                    System.out.println("Введите слово на англ: ");
+                    String str1 = kbScanner.nextLine();
+                    System.out.println("Введите слово на укр: ");
+                    String str2 = kbScanner.nextLine();
+
+                    if (str1 != null && str2 != null) {
+                        map.put(str1, str2);
+                    }
+
+                    System.out.println("Add");
+                    break;
+                case "0":
+                    flag = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
