@@ -27,6 +27,7 @@ public class Library {
     {
 
         Add(new Book().setAuthor("Knuth").setTitle("Art of programming"));
+        Add(new Journal().setNumber(48).setTitle("New York Times"));
         PrintFunds();
     }
 
