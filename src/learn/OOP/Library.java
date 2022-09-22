@@ -62,6 +62,26 @@ public class Library {
 
     }
 
+    public void showNonPeriodic()
+    {
+        for(Literature literature : funds)
+        {
+            if(!(literature instanceof Periodic))
+
+            {    if(literature instanceof Printable)
+            {
+                ((Printable) literature).Print();
+            }
+            else
+            {
+                System.out.println("Unprintable: "+ literature.getTitle());
+            }
+
+            }
+        }
+
+    }
+
 
     public void showUnprintable()
     {
@@ -89,7 +109,15 @@ public class Library {
             System.out.println("Funds creation failed"+ e.getMessage());
             return;
         }
+
+        Add(new Poster().setTitle("X-Man #34"));
+        Add(new Poster().setTitle("Logan #1"));
+        Add(new Poster().setTitle("X-Man #348"));
+
         showPeriodic();
+        System.out.println();
+        showNonPeriodic();
+
     }
 
 }
