@@ -1,6 +1,8 @@
 package learn.OOP;
 
-public class Journal extends  Literature{
+public class Journal
+        extends  Literature
+        implements Printable, Periodic {
     private Integer number;
 
     public Integer getNumber() {                           //  return this.number value
@@ -20,6 +22,7 @@ public class Journal extends  Literature{
         return this;
     }
 
+    @Override
     public void Print()                                     //  show data
     {
         System.out.printf("Journal.Title: %s. Number : %s%n",
