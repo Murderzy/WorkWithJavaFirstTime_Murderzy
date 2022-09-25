@@ -115,7 +115,7 @@ public class Library implements Serializable {
             System.out.println("error");
             return;
         }
-        System.out.println("Serialized");
+        //System.out.println("Serialized");
     }
 
     public void dataRead()
@@ -133,6 +133,34 @@ public class Library implements Serializable {
                 {
                     number++;
                 System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+
+
+        System.out.printf("Read data %s",number);
+        System.out.println();
+        System.out.println("Done");
+    }
+
+    public void dataReadtoFunds()
+    {
+        int number = 0;
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            this.funds = (List<Literature>)ios.readObject();
+            for(Literature data:this.funds)
+            {
+                if(data instanceof Literature)
+                {
+                    number++;
+                    //System.out.println(data.getTitle());
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -253,6 +281,8 @@ public class Library implements Serializable {
 //        add(new Poster().setTitle("Logan #1"));
 //        add(new Poster().setTitle("X-Man #348"));
 //
+//        this.serializeData();
+
 //        showPeriodic();
 //        System.out.println();
 //        showNonPeriodic();
@@ -261,6 +291,8 @@ public class Library implements Serializable {
 
 
         while(flag) {
+            this.dataReadtoFunds();
+            System.out.println();
             System.out.printf("\n1.Show all\n" +
                     "2.Show printable\n" +
                     "3.Show periodic\n" +
@@ -274,19 +306,24 @@ public class Library implements Serializable {
 
             switch (digit) {
                 case "1":
-                    this.dataRead();
+                    this.printFunds();
+                    //this.dataRead();
                     break;
                 case "2":
-                    this.dataReadPrintable();
+                    this.showPrintable();
+                    //this.dataReadPrintable();
                     break;
                 case "3":
-                    this.dataReadPeriodic();
+                    this.showPeriodic();
+                    //this.dataReadPeriodic();
                     break;
                 case "4":
-                    this.dataReadNonPeriodic();
+                    this.showUnprintable();
+                    //this.dataReadNonPeriodic();
                     break;
                 case "5":
-                    this.dataReadNonPrintable();
+                    this.showNonPeriodic();
+                    //this.dataReadNonPrintable();
                     break;
                 case "0":
                     flag = false;
