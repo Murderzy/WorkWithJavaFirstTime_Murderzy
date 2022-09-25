@@ -19,7 +19,7 @@ public class Library implements Serializable {
         funds.add(literature); this.serializeData();
     }
 
-    public void printFunds()
+    public void printFunds()  //  печатаем все
     {
         for(Literature literature : funds)
         {   if(literature instanceof Printable)
@@ -33,7 +33,7 @@ public class Library implements Serializable {
         }
     }
 
-    public void showPrintable()
+    public void showPrintable()  //  печатаем только printable
     {
         for(Literature literature : funds)
         {   if(literature instanceof Printable)
@@ -44,7 +44,7 @@ public class Library implements Serializable {
         }
     }
 
-    public void showPeriodic()
+    public void showPeriodic()  //  печатаем только periodic
     {
         for(Literature literature : funds)
         {
@@ -64,7 +64,7 @@ public class Library implements Serializable {
 
     }
 
-    public void showNonPeriodic()
+    public void showNonPeriodic()  //  печатаем только non periodic
     {
         for(Literature literature : funds)
         {
@@ -85,7 +85,7 @@ public class Library implements Serializable {
     }
 
 
-    public void showUnprintable()
+    public void showUnprintable()  //  печатаем только unprintable
     {
         for(Literature literature : funds)
         {   if(!(literature instanceof Printable))
@@ -96,11 +96,11 @@ public class Library implements Serializable {
         }
     }
 
-    public List<Literature> getFunds() {
-        return funds;
-    }
+//    public List<Literature> getFunds() {
+//        return funds;
+//    }
 
-    public void serializeData()
+    public void serializeData()  //  сериализация данных
     {
         try(FileOutputStream file = new FileOutputStream("funds.ser"))
         {
@@ -118,7 +118,7 @@ public class Library implements Serializable {
         //System.out.println("Serialized");
     }
 
-    public void dataRead()
+    public void dataRead()  //  дессериализация всех данных
     {
         int number = 0;
         try(FileInputStream file = new FileInputStream("funds.ser"))
@@ -146,7 +146,7 @@ public class Library implements Serializable {
         System.out.println("Done");
     }
 
-    public void dataReadtoFunds()
+    public void dataReadtoFunds()  //  дессериализация данных в переменную funds для дальнейшей работы с ней
     {
         int number = 0;
         try(FileInputStream file = new FileInputStream("funds.ser"))
@@ -174,7 +174,7 @@ public class Library implements Serializable {
         System.out.println("Done");
     }
 
-    public void dataReadPrintable()
+    public void dataReadPrintable()  //  дессериализация только printable
     {
         try(FileInputStream file = new FileInputStream("funds.ser"))
         {
@@ -196,7 +196,7 @@ public class Library implements Serializable {
         System.out.println("Done");
     }
 
-    public void dataReadPeriodic()
+    public void dataReadPeriodic()  //  дессериализация только periodic
     {
         try(FileInputStream file = new FileInputStream("funds.ser"))
         {
@@ -218,7 +218,7 @@ public class Library implements Serializable {
         System.out.println("Done");
     }
 
-    public void dataReadNonPrintable()
+    public void dataReadNonPrintable()  //  дессериализация только unprintable
     {
         try(FileInputStream file = new FileInputStream("funds.ser"))
         {
@@ -240,7 +240,7 @@ public class Library implements Serializable {
         System.out.println("Done");
     }
 
-    public void dataReadNonPeriodic()
+    public void dataReadNonPeriodic()  //  дессериализация только NonPeriodic
     {
         try(FileInputStream file = new FileInputStream("funds.ser"))
         {
