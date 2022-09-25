@@ -1,6 +1,8 @@
 package learn.OOP;
 
-public abstract class Literature {
+import java.io.Serializable;
+
+public abstract class Literature implements Serializable {
     private String title;
     //Alt-Ins
 

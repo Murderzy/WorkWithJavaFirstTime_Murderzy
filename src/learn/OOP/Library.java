@@ -1,28 +1,30 @@
 package learn.OOP;
 
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
-public class Library {
+public class Library implements Serializable {
     private List<Literature> funds;
 
     public Library() {
         this.funds = new ArrayList<>();
     }
 
-    public void Add(Literature literature)
+    public void add(Literature literature)
     {
-        funds.add(literature);
+        funds.add(literature); this.serializeData();
     }
 
-    public void PrintFunds()
+    public void printFunds()
     {
         for(Literature literature : funds)
         {   if(literature instanceof Printable)
             {
-                ((Printable)literature).Print();
+                ((Printable)literature).print();
             }
             else
             {
@@ -36,7 +38,7 @@ public class Library {
         for(Literature literature : funds)
         {   if(literature instanceof Printable)
         {
-            ((Printable)literature).Print();
+            ((Printable)literature).print();
         }
 
         }
@@ -50,7 +52,7 @@ public class Library {
 
             {    if(literature instanceof Printable)
                 {
-                 ((Printable) literature).Print();
+                 ((Printable) literature).print();
                     }
                 else
                 {
@@ -70,7 +72,7 @@ public class Library {
 
             {    if(literature instanceof Printable)
             {
-                ((Printable) literature).Print();
+                ((Printable) literature).print();
             }
             else
             {
@@ -94,29 +96,209 @@ public class Library {
         }
     }
 
+    public List<Literature> getFunds() {
+        return funds;
+    }
+
+    public void serializeData()
+    {
+        try(FileOutputStream file = new FileOutputStream("funds.ser"))
+        {
+            ObjectOutputStream oos = new ObjectOutputStream(file);
+
+
+            oos.writeObject(this.funds);
+
+
+            oos.flush();
+        } catch (IOException e) {
+            System.out.println("error");
+            return;
+        }
+        System.out.println("Serialized");
+    }
+
+    public void dataRead()
+    {
+        int number = 0;
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            List<Literature> list = (List<Literature>)ios.readObject();
+            for(Literature data:list)
+            {
+               if(data instanceof Literature)
+                {
+                    number++;
+                System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+
+
+        System.out.printf("Read data %s",number);
+        System.out.println();
+        System.out.println("Done");
+    }
+
+    public void dataReadPrintable()
+    {
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            List<Literature> list = (List<Literature>)ios.readObject();
+            for(Literature data:list)
+            {
+                if(data instanceof Literature && data instanceof Printable)
+                {
+                    System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+        System.out.println("Done");
+    }
+
+    public void dataReadPeriodic()
+    {
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            List<Literature> list = (List<Literature>)ios.readObject();
+            for(Literature data:list)
+            {
+                if(data instanceof Literature && data instanceof Periodic)
+                {
+                    System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+        System.out.println("Done");
+    }
+
+    public void dataReadNonPrintable()
+    {
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            List<Literature> list = (List<Literature>)ios.readObject();
+            for(Literature data:list)
+            {
+                if(data instanceof Literature && !(data instanceof Printable))
+                {
+                    System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+        System.out.println("Done");
+    }
+
+    public void dataReadNonPeriodic()
+    {
+        try(FileInputStream file = new FileInputStream("funds.ser"))
+        {
+            ObjectInputStream ios = new ObjectInputStream(file);
+//
+//
+            List<Literature> list = (List<Literature>)ios.readObject();
+            for(Literature data:list)
+            {
+                if(data instanceof Literature && !(data instanceof Periodic))
+                {
+                    System.out.println(data.getTitle());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("error");
+            return;
+        }
+        System.out.println("Done");
+    }
 
     public void Run()
     {
 
-        Add(new Book().setAuthor("Knuth").setTitle("Art of programming"));
-        Add(new Hologram().setTitle("Pectoral"));
-        Add(new Journal().setNumber(48).setTitle("New York Times"));
-        try {
-            Add(new Newspaper().setTitle("DailyPlanet").setDate("2021-09-21"));
-            Add(new Newspaper().setTitle("DailyPlanet").setDate("2022-09-02"));
-            Add(new Newspaper().setTitle("DailyPlanet").setDate("2022-09-22"));
-        } catch (ParseException e) {
-            System.out.println("Funds creation failed"+ e.getMessage());
-            return;
+//        add(new Book().setAuthor("Knuth").setTitle("Art of programming"));
+//        add(new Hologram().setTitle("Pectoral"));
+//        add(new Journal().setNumber(48).setTitle("New York Times"));
+//        try {
+//            add(new Newspaper().setTitle("DailyPlanet").setDate("2021-09-21"));
+//            add(new Newspaper().setTitle("DailyPlanet").setDate("2022-09-02"));
+//            add(new Newspaper().setTitle("DailyPlanet").setDate("2022-09-22"));
+//        } catch (ParseException e) {
+//            System.out.println("Funds creation failed"+ e.getMessage());
+//            return;
+//        }
+//
+//        add(new Poster().setTitle("X-Man #34"));
+//        add(new Poster().setTitle("Logan #1"));
+//        add(new Poster().setTitle("X-Man #348"));
+//
+//        showPeriodic();
+//        System.out.println();
+//        showNonPeriodic();
+
+        boolean flag = true;
+
+
+        while(flag) {
+            System.out.printf("\n1.Show all\n" +
+                    "2.Show printable\n" +
+                    "3.Show periodic\n" +
+                    "4.Show non printable\n" +
+                    "5.Show non periodic\n"+
+                    "0.Exit\n");
+            System.out.println();
+
+            Scanner kbScanner = new Scanner(System.in);
+            String digit = kbScanner.nextLine();
+
+            switch (digit) {
+                case "1":
+                    this.dataRead();
+                    break;
+                case "2":
+                    this.dataReadPrintable();
+                    break;
+                case "3":
+                    this.dataReadPeriodic();
+                    break;
+                case "4":
+                    this.dataReadNonPeriodic();
+                    break;
+                case "5":
+                    this.dataReadNonPrintable();
+                    break;
+                case "0":
+                    flag = false;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        Add(new Poster().setTitle("X-Man #34"));
-        Add(new Poster().setTitle("Logan #1"));
-        Add(new Poster().setTitle("X-Man #348"));
 
-        showPeriodic();
-        System.out.println();
-        showNonPeriodic();
+
+
 
     }
 

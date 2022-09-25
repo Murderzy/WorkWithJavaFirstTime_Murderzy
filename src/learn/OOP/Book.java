@@ -1,8 +1,10 @@
 package learn.OOP;
 
+import java.io.Serializable;
+
 public class Book
         extends Literature
-        implements Printable{
+        implements Printable, Serializable {
         private String author;
 
     public String getAuthor() {
@@ -22,7 +24,7 @@ public class Book
 
 
     @Override
-    public void Print() {
+    public void print() {
         System.out.printf("Book.Author: %s. Title : %s%n",
                 this.author, super.getTitle());
     }

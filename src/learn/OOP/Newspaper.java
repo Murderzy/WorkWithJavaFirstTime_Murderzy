@@ -1,5 +1,6 @@
 package learn.OOP;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,7 +8,7 @@ import java.util.Date;
 
 public class Newspaper
         extends Literature
-        implements Printable, Periodic{
+        implements Printable, Periodic, Serializable {
     private Date date;
     private Calendar calendar;
 
@@ -39,7 +40,7 @@ public class Newspaper
     }
 
     @Override
-    public void Print()                                     //  show data
+    public void print()                                     //  show data
     {
         Calendar now = Calendar.getInstance();
 

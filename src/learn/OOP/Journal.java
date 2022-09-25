@@ -1,8 +1,10 @@
 package learn.OOP;
 
+import java.io.Serializable;
+
 public class Journal
         extends  Literature
-        implements Printable, Periodic {
+        implements Printable, Periodic, Serializable {
     private Integer number;
 
     public Integer getNumber() {                           //  return this.number value
@@ -23,7 +25,7 @@ public class Journal
     }
 
     @Override
-    public void Print()                                     //  show data
+    public void print()                                     //  show data
     {
         System.out.printf("Journal.Title: %s. Number : %s%n",
                 super.getTitle(), this.number);
