@@ -9,11 +9,11 @@ public class AnnotationsDemo {
 
     public void annoByType()
     {
-        Class<?> type = ClassWithAnno.class;  //  по классу
-        Class<?> thisType = this.getClass();  // по объекту
+        Class<?> type = ClassWithAnno.class;
+        Class<?> thisType = this.getClass();
         Class<?> nameType;
         try {
-            nameType = Class.forName("learn.anno.ClassWithoutAnno");  //  по названию класса
+            nameType = Class.forName("learn.anno.ClassWithoutAnno");
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found");
             return;
@@ -49,11 +49,11 @@ public class AnnotationsDemo {
 
     public void annoByMethods()
     {
-        Class<?> type = ClassWithAnno.class;  //  по классу
-        Class<?> thisType = this.getClass();  // по объекту
+        Class<?> type = ClassWithAnno.class;
+        Class<?> thisType = this.getClass();
         Class<?> nameType;
         try {
-            nameType = Class.forName("learn.anno.ClassWithoutAnno");  //  по названию класса
+            nameType = Class.forName("learn.anno.ClassWithoutAnno");
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found");
             return;
@@ -103,11 +103,11 @@ public class AnnotationsDemo {
 
     public void annoByField()
     {
-        Class<?> type = ClassWithAnno.class;  //  по классу
-        Class<?> thisType = this.getClass();  // по объекту
+        Class<?> type = ClassWithAnno.class;
+        Class<?> thisType = this.getClass();
         Class<?> nameType;
         try {
-            nameType = Class.forName("learn.anno.ClassWithoutAnno");  //  по названию класса
+            nameType = Class.forName("learn.anno.ClassWithoutAnno");
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found");
             return;
