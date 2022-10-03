@@ -2,6 +2,7 @@ package learn;
 
 import com.google.inject.Inject;
 import learn.anno.AnnotationsDemo;
+import learn.files.FilesNavigator;
 
 public class App {
 
@@ -16,6 +17,7 @@ public class App {
 //        System.out.println("StringService : " + stringService.getString());
 //        System.out.println("RandomProvider : " + randomProvider.getN());
 //
-        new AnnotationsDemo().run();
-                        }
+        //new AnnotationsDemo().run();
+          new FilesNavigator().run();
+    }
 }
