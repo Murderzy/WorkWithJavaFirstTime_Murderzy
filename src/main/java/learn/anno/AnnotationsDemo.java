@@ -133,8 +133,8 @@ public class AnnotationsDemo {
     @MethodAnnotation("Entry Point")
     public void run()
     {
-        //start();
-        simpleStart();
+        start();
+        //simpleStart();
     }
 
     public void start()  //  меню для работы с пользователем до выбора пункта выхода
