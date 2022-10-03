@@ -17,7 +17,7 @@ public class App {
 //        System.out.println("StringService : " + stringService.getString());
 //        System.out.println("RandomProvider : " + randomProvider.getN());
 //
-        //new AnnotationsDemo().run();
-          new FilesNavigator().run();
+         new AnnotationsDemo().run();
+        // new FilesNavigator().run();
     }
 }

@@ -133,7 +133,8 @@ public class AnnotationsDemo {
     @MethodAnnotation("Entry Point")
     public void run()
     {
-        start();
+        //start();
+        simpleStart();
     }
 
     public void start()  //  меню для работы с пользователем до выбора пункта выхода
@@ -165,6 +166,36 @@ public class AnnotationsDemo {
                     break;
                 default:
                     break;
+            }
+        }
+    }
+
+    public void simpleStart()
+    {
+        Class<?> type = ClassWithAnno.class;
+        Class<?> thisType = this.getClass();
+        Class<?> nameType;
+        try {
+            nameType = Class.forName("learn.anno.ClassWithoutAnno");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found");
+            return;
+        }
+
+
+        //аннотации для полей
+
+        Field[] fields = type.getDeclaredFields();
+        for(Field field : fields)
+        {
+            if(field.isAnnotationPresent(FieldAnnotation.class)){
+                FieldAnnotation fieldAnnotation = field.getAnnotation(FieldAnnotation.class);
+                System.out.printf("Field '%s' of class '%s' if %s with priority %d %n  ",
+                        field.getName(),type.getName(),fieldAnnotation.value(),fieldAnnotation.priority() );
+            }
+            else {
+                System.out.printf("Field '%s' of class '%s' has no annotation %n",
+                        field.getName(),type.getName());
             }
         }
     }
