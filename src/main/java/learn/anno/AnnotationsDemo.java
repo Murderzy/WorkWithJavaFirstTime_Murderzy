@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class AnnotationsDemo {
 
-    public void annoByType()
+    public void annoByType()  //  выводим аннотацию относящуюся к классу
     {
         Class<?> type = ClassWithAnno.class;
         Class<?> thisType = this.getClass();
@@ -47,7 +47,7 @@ public class AnnotationsDemo {
         }
     }
 
-    public void annoByMethods()
+    public void annoByMethods()  //  выводим аннотацию относящуюся к методу
     {
         Class<?> type = ClassWithAnno.class;
         Class<?> thisType = this.getClass();
@@ -101,7 +101,7 @@ public class AnnotationsDemo {
         }
     }
 
-    public void annoByField()
+    public void annoByField()  //  выводим аннотацию относящуюся к полю
     {
         Class<?> type = ClassWithAnno.class;
         Class<?> thisType = this.getClass();
@@ -136,7 +136,7 @@ public class AnnotationsDemo {
         start();
     }
 
-    public void start()
+    public void start()  //  меню для работы с пользователем до выбора пункта выхода
     {
         boolean flag = true;
 
