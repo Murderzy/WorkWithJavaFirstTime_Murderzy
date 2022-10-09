@@ -1,10 +1,11 @@
-package learn;
+package learn.services;
 
 import com.google.inject.Inject;
 
 public class StringService {
     @Inject
-     private CharService charService;
+    private SymbolService charService;  //  нтерфейс, charService - его реализация
+     //private CharService charService;
 
     @Inject
      private RandomProvider randomProvider;

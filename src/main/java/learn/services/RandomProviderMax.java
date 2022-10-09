@@ -1,9 +1,9 @@
-package learn;
+package learn.services;
 
 import java.util.Random;
 import javax.inject.Singleton;
 @Singleton
-public class RandomProvider {
+public class RandomProviderMax implements RandomProvider{
     public int getN() {
         return n;
     }
