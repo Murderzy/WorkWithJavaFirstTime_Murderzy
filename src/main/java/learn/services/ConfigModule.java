@@ -29,6 +29,9 @@ public class ConfigModule extends AbstractModule {
                 annotatedWith(Names.named("oracle"))
                 .to(OracleConnection.class);
 
+
+        bind(DateService.class).to(DateModule.class);
+        bind(TimeService.class).to(TimeModule.class);
     }
     //private RandomProvider r10;
     //@Provides//  альтернатива bind - методы-провайдеры

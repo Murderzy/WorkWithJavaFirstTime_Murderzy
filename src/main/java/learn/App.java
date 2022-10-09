@@ -2,8 +2,10 @@ package learn;
 
 import com.google.inject.Inject;
 import learn.anno.AnnotationsDemo;
+import learn.services.DateService;
 import learn.services.RandomProvider;
 import learn.services.StringService;
+import learn.services.TimeService;
 import learn.services.connectionString.ConnectionStringService;
 import learn.services.hash.HashService;
 import learn.thread.ThreadDemo;
@@ -34,6 +36,12 @@ public class App {
 //        this.randomProvider = randomProvider;
 //    }
 
+    @Inject
+    private DateService dateService;
+
+    @Inject
+    private TimeService timeService;
+
     public  void run() {
 //        System.out.println("IoC Demo");
 //        System.out.println("StringService : " + stringService.getString());
@@ -44,6 +52,8 @@ public class App {
 //        System.out.println("Connection oracle : " + oracle.connectionString());
         // new AnnotationsDemo().run();
         // new FilesNavigator().run();
-        new ThreadDemo().run();
+        //new ThreadDemo().run();
+        System.out.println(dateService.getDate());
+        System.out.println(timeService.getTime());
     }
 }
