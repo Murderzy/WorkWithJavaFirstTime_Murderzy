@@ -8,6 +8,7 @@ import learn.services.StringService;
 import learn.services.TimeService;
 import learn.services.connectionString.ConnectionStringService;
 import learn.services.hash.HashService;
+import learn.thread.Inflation;
 import learn.thread.ThreadDemo;
 
 import javax.inject.Named;
@@ -53,7 +54,8 @@ public class App {
         // new AnnotationsDemo().run();
         // new FilesNavigator().run();
         //new ThreadDemo().run();
-        System.out.println(dateService.getDate());
-        System.out.println(timeService.getTime());
+        new Inflation().run();
+        //System.out.println(dateService.getDate());
+       //System.out.println(timeService.getTime());
     }
 }
