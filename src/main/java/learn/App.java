@@ -1,19 +1,12 @@
 package learn;
 
 import com.google.inject.Inject;
-import learn.anno.AnnotationsDemo;
-import learn.services.DateService;
-import learn.services.RandomProvider;
-import learn.services.StringService;
-import learn.services.TimeService;
-import learn.services.connectionString.ConnectionStringService;
-import learn.services.hash.HashService;
-import learn.thread.Inflation;
-import learn.thread.ThreadDemo;
+import learn.services.*;
 
 import javax.inject.Named;
 
 public class App {
+
 
 //    @Inject
 //    private StringService stringService;
@@ -31,31 +24,49 @@ public class App {
 //    @Inject @Named("oracle")
 //    private ConnectionStringService oracle;
 
-//    @Inject
-//    public App(@Named("max") RandomProvider randomProvider)
-//    {
-//        this.randomProvider = randomProvider;
-//    }
+
+     @Inject @Named("max")
+    private final  RandomProvider randomProvider ;
+
+    @Inject @Named("ten")
+    private final  RandomProvider randomProvider10 ;
+
 
     @Inject
-    private DateService dateService;
+    public App(@Named("max") RandomProvider randomProvider, @Named("ten") RandomProvider randomProvider10,
+               @Named("Char")SymbolService charService, @Named("Time") TimeService timeService, @Named("Date")DateService dateService)
+    {
+        // иньекция через конструктор лучше тем, что позволяет использовать final поля
+        this.randomProvider = randomProvider;
+        this.randomProvider10 = randomProvider10;
 
-    @Inject
-    private TimeService timeService;
+        this.charService = charService;
+        this.timeService = timeService;
+        this.dateService = dateService;
+    }
 
-    public  void run() {
-//        System.out.println("IoC Demo");
-//        System.out.println("StringService : " + stringService.getString());
-//        System.out.println("RandomProvider : " + randomProvider.getN());
-//        System.out.println("HashService(128) : " + hash128.hash("hello"));
-//        System.out.println("HashService(160) : " + hash160.hash("hello"));
-//        System.out.println("Connection SQL : " + sql.connectionString());
-//        System.out.println("Connection oracle : " + oracle.connectionString());
-        // new AnnotationsDemo().run();
-        // new FilesNavigator().run();
-        //new ThreadDemo().run();
-        new Inflation().run();
-        //System.out.println(dateService.getDate());
-       //System.out.println(timeService.getTime());
+    @Inject @Named("Char")
+    private final SymbolService charService;
+
+    @Inject @Named("Time")
+    private final TimeService timeService;
+    @Inject @Named("Date")
+    private final DateService dateService;
+
+
+
+
+    public void run() {
+        //System.out.println( "IoC Demo" ) ;
+        //System.out.println( "StringService: " + stringService.getString() ) ;
+        System.out.println( "RandomProvider: " + randomProvider.getN() ) ;
+        System.out.println( "CharProvider: " + charService.getChar() ) ;
+        System.out.println( "TimeProvider: " + timeService.getTime() ) ;
+        System.out.println( "DateProvider: " + dateService.getDate() ) ;
+        System.out.println( "RandomProvider10: " + randomProvider10.getN() ) ;
+        //System.out.println( "HashService (128bit): " + hash128.hash( "Hello" ) ) ;
+        //System.out.println( "HashService (160bit): " + hash160.hash( "Hello" ) ) ;
+        //System.out.println( "MsConnectionString: " + msConnectionString ) ;
+        //System.out.println( "OracleConnectionString: " + oracleConnectionString ) ;
     }
 }

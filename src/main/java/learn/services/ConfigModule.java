@@ -33,6 +33,46 @@ public class ConfigModule extends AbstractModule {
         bind(DateService.class).to(DateModule.class);
         bind(TimeService.class).to(TimeModule.class);
     }
+
+    @Provides   // альтернатива bind - методы-провайдеры
+    @Named("max")
+    RandomProvider getRandomProviderMax() {  // + можно вызвать конструкторы с пар-ми
+        return new RandomProviderMax() ;     // - Singleton нужно реализовывать самим
+    }
+
+    private RandomProvider r10 ;   // схема реализации Singleton
+    @Provides @Named("ten")
+    RandomProvider getRandomProviderTen() {
+        if( r10 == null
+                || RandomProviderTen.class.isAnnotationPresent( com.google.inject.Singleton.class )
+                || RandomProviderTen.class.isAnnotationPresent( javax.inject.Singleton.class )
+        ) r10 = new RandomProviderTen() ;
+        return r10 ;
+    }
+
+    @Provides
+    @Named("Char")
+    SymbolService getCharService()
+    {
+        return new CharService();
+    }
+
+    @Provides
+    @Named("Time")
+    TimeService timeService()
+    {
+        return new TimeModule();
+    }
+
+    @Provides
+    @Named("Date")
+    DateService dateService()
+    {
+        return new DateModule();
+    }
+
+
+
     //private RandomProvider r10;
     //@Provides//  альтернатива bind - методы-провайдеры
     //@Named("max")
